@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_04_30_014846) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "rsvps", force: :cascade do |t|
     t.string "name"
     t.integer "head_count"
