@@ -15,5 +15,5 @@
   <%= @rsvp.food_bring %>
 </p>
 
-<%= link_to 'Edit', edit_rsvp_path(@rsvp) %> |
-<%= link_to 'Back', rsvps_path %>
+<%= button_to 'Edit', edit_rsvp_path(@rsvp), :method => "get" %> <br />
+<%= button_to 'Home Page', root_path, :method => "get" %>
