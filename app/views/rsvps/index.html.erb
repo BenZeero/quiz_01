@@ -2,7 +2,7 @@
 <div class="title">
   <h1>RSVP list for Special Event</h1>
 </div>
-<%= button_to "NEW RSVP", new_rsvp_path, :method => "get" %>
+<%= button_to "NEW RSVP", "#", :method => "get" %>
 
 
 <table>
@@ -14,18 +14,20 @@
     </tr>
   </thead>
 
-  <tbody>
+  <#tbody>
     <% @rsvps.each do |rsvp| %>
       <tr>
-        <td><%= rsvp.name %></td>
-        <td><%= button_to 'Show', rsvp, :method => "get" %></td>
-        <td><%= button_to 'Edit', edit_rsvp_path(rsvp), :method => "get" %></td>
-        <td><%= button_to 'Delete RSVP', rsvp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><#%= rsvp.name %></td>
+        <td><#%= button_to 'Show', rsvp, :method => "get" %></td>
+        <td><#%= button_to 'Edit', edit_rsvp_path(rsvp), :method => "get" %></td>
+        <td><#%= button_to 'Delete RSVP', rsvp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
+  <#/tbody>
 </table>
-
+<div class="text-center">
+  <%= link_to 'Add a new schedule...', new_schedule_path, class: 'btn btn-primary btn-lg' %>
+</div>
 <br>
 
 

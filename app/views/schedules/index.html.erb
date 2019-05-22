@@ -1,0 +1,23 @@
+<br />
+
+<div class="col-10 offset-1">
+  <h1>Schedule Index</h1>
+</div>
+
+<div class="text-center">
+  <%= link_to 'Add a new schedule...', new_schedule_path, class: 'btn btn-primary btn-lg' %>
+  <br class="clr" />
+
+</div>
+<table>
+  <tbody>
+    <% @schedules.each do |t| %>
+      <tr>
+        <td><%= t.event_name %></td>
+        <td><%= button_to 'Show', "#", :method => "get" %></td>
+        <td><%= button_to 'Edit', "#", :method => "get" %></td>
+        <td><%= button_to 'Delete Event', "#", method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

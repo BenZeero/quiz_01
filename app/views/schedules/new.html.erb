@@ -1,0 +1,14 @@
+<div>
+  <h1>New Schedule</h1>
+  <%= simple_form_for @schedule, url: schedules_path do |f| %>
+    <%= f.input :event_name %>
+    <%= f.input :event_date %>
+    <%= f.input :event_time %>
+    <%= f.input :venue %>
+    <%= f.input :detail %>
+    <br />
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+  <br />
+  <% end %>
+  <br />
+</div>

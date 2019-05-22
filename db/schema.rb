@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_30_014846) do
+ActiveRecord::Schema.define(version: 2019_05_22_191730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 2019_04_30_014846) do
     t.string "food_bring"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "event_id"
+    t.index ["event_id"], name: "index_rsvps_on_event_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.date "event_date"
+    t.time "event_time"
+    t.string "venue"
+    t.string "detail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "event_name"
   end
 
 end
