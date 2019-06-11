@@ -10,11 +10,13 @@ class RsvpsController < ApplicationController
   # GET /rsvps/1
   # GET /rsvps/1.json
   def show
+    @rsvp = RSVP.find(params[:id])
   end
 
   # GET /rsvps/new
   def new
     @rsvp = Rsvp.new
+    @schedules = Schedule.all
   end
 
   # GET /rsvps/1/edit
@@ -24,17 +26,8 @@ class RsvpsController < ApplicationController
   # POST /rsvps
   # POST /rsvps.json
   def create
-    @rsvp = Rsvp.new(rsvp_params)
-
-    respond_to do |format|
-      if @rsvp.save
-        format.html { redirect_to @rsvp, notice: 'Rsvp was successfully created.' }
-        format.json { render :show, status: :created, location: @rsvp }
-      else
-        format.html { render :new }
-        format.json { render json: @rsvp.errors, status: :unprocessable_entity }
-      end
-    end
+    @rsvp = current_schedule.rsvps.create(rsvp_params)
+    redirect_to schedule_path(current_schedule)
   end
 
   # PATCH/PUT /rsvps/1
@@ -63,6 +56,11 @@ class RsvpsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    helper_method :current_schedule
+    def current_schedule
+      @current_schedule ||= Schedule.find(params[:schedule_id])
+    end
+    
     def set_rsvp
       @rsvp = Rsvp.find(params[:id])
     end

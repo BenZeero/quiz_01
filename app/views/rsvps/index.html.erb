@@ -2,7 +2,7 @@
 <div class="title">
   <h1>RSVP list for Special Event</h1>
 </div>
-<%= button_to "NEW RSVP", "#", :method => "get" %>
+<%= button_to "NEW RSVP", new_rsvp_path, :method => "get" %>
 
 
 <table>
@@ -25,9 +25,6 @@
     <% end %>
   <#/tbody>
 </table>
-<div class="text-center">
-  <%= link_to 'Add a new schedule...', new_schedule_path, class: 'btn btn-primary btn-lg' %>
-</div>
-<br>
+
 
 
