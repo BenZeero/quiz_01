@@ -21,22 +21,36 @@
   </button>
 
 </div>
-<table>
-  <tbody>
-    <% @schedules.each do |t| %>
-      <tr>
-        <td><%= t.event_name %></td>
-        <td><button type="button" class="btn btn-success new-rsvp-button" data-toggle="modal" data-target="#newScheduleModalRSVP" data-rsvp-url="<%= schedule_rsvps_path(t) %>">
-          RSVP
-        </button></td>
-        <td><%= button_to 'Show', t, :method => "get", class: 'btn btn-success' %></td>
-        <td><%= button_to 'Edit', "#", :method => "get", class: 'btn btn-secondary' %></td>
-        <td><%= button_to 'Delete Event', schedule_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
-
-      </tr>
-    <% end %>
+<div class = "container booyah-box col-10 offset-1">
+  <br />
+  <div class="clear"></div>
+  <div class = "row">
+    <% @schedules.each do |t| %> 
+      <div class = "col-12 col-md-6 text-center">
+        <blockquote>
+          <div class ="row">
+            <div class = "col font-weight-bold text-center">
+              <%= t.event_name %>
+            </div>
+          </div>
+          <div class = "row justify-content-center">
+            <div class = "col-12 col-md-6 btn-group">
+              <button type="button" class="btn btn-success new-rsvp-button" data-toggle="modal" data-target="#newScheduleModalRSVP" data-rsvp-url="<%= schedule_rsvps_path(t) %>">
+                RSVP
+              </button>
+              <%= button_to 'Show', t, :method => "get", class: 'btn btn-primary' %>
+              <%= button_to 'Edit', "#", :method => "get", class: 'btn btn-secondary' %>
+              <%= button_to 'Delete Event', schedule_path(t), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </div>   
+          </div>
+        </blockquote>  
+      </div>
+    <% end %>  
+  </div>
+    <br />
+  
   </tbody>
-</table>
+</div>
 
 
 
@@ -55,7 +69,7 @@
           <%= f.input :event_date %>
           <%= f.input :event_time %>
           <%= f.input :venue %>
-          <%= f.input :detail %>
+          <%= f.input :detail, label: 'Event Description' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -70,16 +84,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <h4 class="modal-title text-left" id="newScheduleModalLabel">RSVP</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
-        <h4 class="modal-title" id="newScheduleModalLabel">RSVP</h4>
+        
       </div>
       <%= simple_form_for @rsvp, url: "#", html: {id: 'newRsvpForm' } do |f| %>
         <div class="modal-body">
           <%= f.input :name %>
-          <%= f.input :head_count %>
-          <%= f.input :food_bring %>
+          <%= f.input :head_count, label: 'Party Size' %>
+          <%= f.input :food_bring, label: 'Food to Bring' %>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

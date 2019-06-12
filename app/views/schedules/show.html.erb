@@ -1,55 +1,66 @@
-<div>
-  <h1>Schedule View</h1>
-  <h1 class="text-center"><%= @schedule.event_name %></h1>
+<div class = "container">
+  <div>
+    <br />
+    <h1>Schedule View</h1>
+    <h1 class="text-center"><%= @schedule.event_name %></h1>
+  </div>
+
+  <br />
+  <br />
+  <br />
+  <h1 class="text-center"> Event Detail</h1>
+  <div class= "booyah-box col-10 offset-1">
+    <div class = "row">
+      <div class = "col-12 col-md-2 text-left"> 
+        <strong>Event Date: </strong>
+        <br />
+        <%= @schedule.event_date %>
+        <br />
+        <strong>Event Time: </strong>
+        <br />
+        <%= @schedule.event_time.strftime("%I:%M %p") %>
+        <br />
+        <strong>Event Venue: </strong>
+        <br />
+        <%= @schedule.venue %>
+        <br />
+      </div> 
+      <div class = "col-12 col-md-10 text-left"> 
+        <strong>Description: </strong>
+        <br />
+        <%= @schedule.detail %>
+        <br />
+      </div>
+    </div>
+  </div>
+  <br />
+  <h1 class="text-center"> RSVP List</h1>
+  <br />
+  <div class = "booyah-box col-10 offset-1">
+    <br />
+    <div class = "row font-weight-bold text-center">
+      <div class = "col">
+        Name
+      </div>
+      <div class = "col">
+        Party Size
+      </div>
+      <div class = "col">
+        Food to Bring
+      </div>
+    </div>
+    <% @schedule.rsvps.each do |t| %>
+      <div class = "row text-center">
+        <div class = "col">
+          <%= t.name %>
+        </div>
+        <div class = "col">
+          <%= t.head_count %>
+        </div>
+        <div class = "col">
+          <%= t.food_bring %>
+        </div>
+      </div>
+    <% end %>   
+  </div>
 </div>
-
-<br />
-<br />
-<br />
-
-<div>
-  <strong>Event Date: </strong>
-  <%= @schedule.event_date %>
-  <br />
-  <strong>Event Time: </strong>
-  <%= @schedule.event_time.strftime("%I:%M:%S") %>
-  <br />
-  <strong>Event Venue: </strong>
-  <%= @schedule.venue %>
-  <br />
-  <br />
-  <br />
-  <strong>Detail: </strong>
-  <br />
-  <%= @schedule.detail %>
-  <br />
-</div>
-
-<div>
-<br />
-  <strong>RSVP: </strong>
-  <br />
-  <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Head Count</th>
-      <th>Food to Bring</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @schedule.rsvps.each do |t| %>
-    <tr>
-      <td><%= t.name %></td>
-      <td><%= t.head_count %></td>
-      <td><%= t.food_bring %></td>    
-    </tr>
-  <% end %>   
-  </tbody> 
-
-</div>
-
-
-
-  
